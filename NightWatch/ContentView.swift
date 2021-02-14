@@ -30,32 +30,51 @@ let monthlyTasks = [
 
 struct ContentView: View {
     var body: some View {
-        List{
-            Section(header:HStack{
-                Image(systemName: "moon.stars")
-                Text("Nightly Tasks")
-            }.font(.title3)){
-                ForEach(nightlyTasks,id:\.self,content:{
-                    taskName in Text(taskName)
-                })
-            }
-            Section(header:HStack{
-                Image(systemName: "sunset")
-                Text("Weekly Tasks")
-            }.font(.title3)){
-                ForEach(weeklyTasks,id:\.self,content:{
-                    taskName in Text(taskName)
-                })
-            }
-            Section(header:HStack{
-                Image(systemName: "calendar")
-                Text("Monthly Tasks")
-            }.font(.title3)){
-                ForEach(monthlyTasks,id:\.self,content:{
-                    taskName in Text(taskName)
-                })
-            }
-        }.listStyle(GroupedListStyle())
+        NavigationView {
+            List{
+                Section(header:TaskSectionHeader(symbolSystemName:"moon.stars",headerText:"Nightly Tasks")){
+                    ForEach(nightlyTasks,id:\.self,content:{
+                        taskName in NavigationLink(taskName, destination: DetailView(taskName: taskName))
+                    })
+                }
+                Section(header:TaskSectionHeader(symbolSystemName: "sunset", headerText: "Weekly Tasks")){
+                    ForEach(weeklyTasks,id:\.self,content:{
+                        taskName in NavigationLink(taskName, destination: DetailView(taskName: taskName))
+                    })
+                }
+                Section(header:TaskSectionHeader(symbolSystemName: "calendar", headerText: "Monthly Tasks")){
+                    ForEach(monthlyTasks,id:\.self,content:{
+                        taskName in NavigationLink(taskName, destination: DetailView(taskName: taskName))
+                    })
+                }
+            }.listStyle(GroupedListStyle())
+            .navigationTitle("Home")
+        }
+    }
+}
+
+struct TaskSectionHeader: View {
+    var symbolSystemName: String
+    var headerText: String
+    
+    var body: some View {
+        HStack{
+            Image(systemName: symbolSystemName)
+            Text(headerText)
+        }.font(.title3)
+    }
+}
+
+struct DetailView: View {
+    let taskName: String;
+    
+    var body: some View {
+        VStack {
+            Text(taskName)
+            Text("Placeholder for task description")
+            Text("Placeholder for mark complete button")
+        }
+        .navigationTitle("Test Title")
     }
 }
 
