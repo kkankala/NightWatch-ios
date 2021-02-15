@@ -89,9 +89,18 @@ struct ContentView: View {
                 .listStyle(GroupedListStyle())
                 .navigationTitle("Home")
                 .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .navigationBarLeading) {
                     EditButton()
                 }
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button("Reset"){
+                            // cant do self.nightWatchTasks = NightWatchTasks(), setting individual items
+                            let refreshedNightWatchTasks = NightWatchTasks()
+                            self.nightWatchTasks.nightlyTasks = refreshedNightWatchTasks.nightlyTasks
+                            self.nightWatchTasks.weeklyTasks = refreshedNightWatchTasks.weeklyTasks
+                            self.nightWatchTasks.monthlyTasks = refreshedNightWatchTasks.monthlyTasks
+                        }
+                    }
                 ToolbarItem(placement: .bottomBar) {
                     Toggle(isOn: $focusModeOn, label: {
                         Text("Focus Mode")
