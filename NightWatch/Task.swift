@@ -10,6 +10,6 @@ import Foundation
 struct Task:Identifiable {
     let id = UUID()
     let name: String
-    let isComplete: Bool
-    let lastCompleted: Date?
+    var isComplete: Bool
+    var lastCompleted: Date?
 }

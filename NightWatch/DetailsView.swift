@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct DetailsView: View {
-    let task: Task
+    @Binding var task: Task
 
     var body: some View {
         VStack {
             Text(task.name)
             Text("Placeholder for task description")
-            Text("Placeholder for mark complete button")
+            Button("Mark Complete") {
+                task.isComplete = true
+            }
         }.navigationTitle("Test Title")
     }
 }
@@ -23,6 +25,6 @@ struct DetailsView: View {
 struct DetailsView_Previews: PreviewProvider {
     static var previews: some View {
 
-        DetailsView(task: Task(name: "test task", isComplete: false, lastCompleted: nil))
+        DetailsView(task: Binding<Task>.constant(Task(name: "test task", isComplete: false, lastCompleted: nil)))
     }
 }
