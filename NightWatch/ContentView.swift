@@ -34,17 +34,17 @@ struct ContentView: View {
             List {
                 Section(header: TaskSectionHeader(symbolSystemName: "moon.stars", headerText: "Nightly Tasks")) {
                     ForEach(nightlyTasks, content: {
-                        task in NavigationLink(task.name, destination: DetailsView(task: task))
+                        task in NavigationLink(destination: DetailsView(task: task),label:{TaskRowView(task: task)})
                     })
                 }
                 Section(header: TaskSectionHeader(symbolSystemName: "sunset", headerText: "Weekly Tasks")) {
                     ForEach(weeklyTasks, content: {
-                        task in NavigationLink(task.name, destination: DetailsView(task: task))
+                        task in NavigationLink(destination: DetailsView(task: task),label:{TaskRowView(task: task)})
                     })
                 }
                 Section(header: TaskSectionHeader(symbolSystemName: "calendar", headerText: "Monthly Tasks")) {
                     ForEach(monthlyTasks, content: {
-                        task in NavigationLink(task.name, destination: DetailsView(task: task))
+                        task in NavigationLink(destination: DetailsView(task: task),label:{TaskRowView(task: task)})
                     })
                 }
             }.listStyle(GroupedListStyle())
