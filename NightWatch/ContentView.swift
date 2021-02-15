@@ -11,7 +11,8 @@ import SwiftUI
 struct ContentView: View {
     // array of tasks.
     @ObservedObject var nightWatchTasks: NightWatchTasks
-    
+    @State private var focusModeOn = false
+
     var body: some View {
         NavigationView {
             List {
@@ -19,32 +20,37 @@ struct ContentView: View {
                     let taskIndices = nightWatchTasks.nightlyTasks.indices
                     let tasks = nightWatchTasks.nightlyTasks
                     let taskIndexPairs = Array(zip(tasks, taskIndices)) // combines indices n tasks.
-                    ForEach(taskIndexPairs,id:\.0.id, content: {
+                    ForEach(taskIndexPairs, id: \.0.id, content: {
                         task, taskIndex in
-                        
+
                         // can I hold a copy of the dollar-signed version of the nightwatchtasks instance?
                         let nightWatchTasksWrapper = $nightWatchTasks
-                        
+
                         //Can I use that wrapper to make a bindindable?
                         let tasksBinding = nightWatchTasksWrapper.nightlyTasks
-                        
+
                         // If I get a task out of that Binding<[Task]>(task array), will that element be a binding to a task(Binding<Task>)?
                         let theTasksBinding = tasksBinding[taskIndex]
-                        NavigationLink(destination: DetailsView(task: theTasksBinding ), label: { TaskRowView(task: task) })
+                        
+                        // Always show with Focus Mode is OFF
+                        // Also show when Focus Mode is ON -- AND -- the task is INcomplete
+                        if focusModeOn == false || (focusModeOn && task.isComplete == false) {
+                            NavigationLink(destination: DetailsView(task: theTasksBinding), label: { TaskRowView(task: task) })
+                        }
                     })
                 }
                 Section(header: TaskSectionHeader(symbolSystemName: "sunset", headerText: "Weekly Tasks")) {
                     let taskIndices = nightWatchTasks.weeklyTasks.indices
                     let tasks = nightWatchTasks.weeklyTasks
                     let taskIndexPairs = Array(zip(tasks, taskIndices))
-                    ForEach(taskIndexPairs,id:\.0.id, content: {
+                    ForEach(taskIndexPairs, id: \.0.id, content: {
                         task, taskIndex in
                         // can I hold a copy of the dollar-signed version of the nightwatchtasks instance?
                         let nightWatchTasksWrapper = $nightWatchTasks
-                        
+
                         //Can I use that wrapper to make a bindindable?
                         let tasksBinding = nightWatchTasksWrapper.weeklyTasks
-                        
+
                         // If I get a task out of that Binding<[Task]>(task array), will that element be a binding to a task(Binding<Task>)?
                         let theTasksBinding = tasksBinding[taskIndex]
                         NavigationLink(destination: DetailsView(task: theTasksBinding), label: { TaskRowView(task: task) })
@@ -54,21 +60,29 @@ struct ContentView: View {
                     let taskIndices = nightWatchTasks.monthlyTasks.indices
                     let tasks = nightWatchTasks.monthlyTasks
                     let taskIndexPairs = Array(zip(tasks, taskIndices))
-                    ForEach(taskIndexPairs,id:\.0.id, content: {
+                    ForEach(taskIndexPairs, id: \.0.id, content: {
                         task, taskIndex in
                         // can I hold a copy of the dollar-signed version of the nightwatchtasks instance?
                         let nightWatchTasksWrapper = $nightWatchTasks
-                        
+
                         //Can I use that wrapper to make a bindindable?
                         let tasksBinding = nightWatchTasksWrapper.monthlyTasks
-                        
+
                         // If I get a task out of that Binding<[Task]>(task array), will that element be a binding to a task(Binding<Task>)?
                         let theTasksBinding = tasksBinding[taskIndex]
                         NavigationLink(destination: DetailsView(task: theTasksBinding), label: { TaskRowView(task: task) })
                     })
                 }
-            }.listStyle(GroupedListStyle())
+            }
+                .listStyle(GroupedListStyle())
                 .navigationTitle("Home")
+                .toolbar {
+                ToolbarItem(placement: .bottomBar) {
+                    Toggle(isOn: $focusModeOn, label: {
+                        Text("Focus Mode")
+                    })
+                }
+            }
         }
     }
 }
@@ -88,7 +102,7 @@ struct TaskSectionHeader: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         let nightWatchTasks = NightWatchTasks()
-        
+
         ContentView(nightWatchTasks: nightWatchTasks)
     }
 }
