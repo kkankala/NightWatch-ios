@@ -8,8 +8,8 @@
 import SwiftUI
 
 let nightlyTasks = [
-"Check all windows",
-"Check all doors",
+    "Check all windows",
+    "Check all doors",
     "Check that the safe is locked",
     "Check the mailbox",
     "Inspect security camera",
@@ -31,24 +31,24 @@ let monthlyTasks = [
 struct ContentView: View {
     var body: some View {
         NavigationView {
-            List{
-                Section(header:TaskSectionHeader(symbolSystemName:"moon.stars",headerText:"Nightly Tasks")){
-                    ForEach(nightlyTasks,id:\.self,content:{
-                        taskName in NavigationLink(taskName, destination: DetailView(taskName: taskName))
+            List {
+                Section(header: TaskSectionHeader(symbolSystemName: "moon.stars", headerText: "Nightly Tasks")) {
+                    ForEach(nightlyTasks, id: \.self, content: {
+                        taskName in NavigationLink(taskName, destination: DetailsView(taskName: taskName))
                     })
                 }
-                Section(header:TaskSectionHeader(symbolSystemName: "sunset", headerText: "Weekly Tasks")){
-                    ForEach(weeklyTasks,id:\.self,content:{
-                        taskName in NavigationLink(taskName, destination: DetailView(taskName: taskName))
+                Section(header: TaskSectionHeader(symbolSystemName: "sunset", headerText: "Weekly Tasks")) {
+                    ForEach(weeklyTasks, id: \.self, content: {
+                        taskName in NavigationLink(taskName, destination: DetailsView(taskName: taskName))
                     })
                 }
-                Section(header:TaskSectionHeader(symbolSystemName: "calendar", headerText: "Monthly Tasks")){
-                    ForEach(monthlyTasks,id:\.self,content:{
-                        taskName in NavigationLink(taskName, destination: DetailView(taskName: taskName))
+                Section(header: TaskSectionHeader(symbolSystemName: "calendar", headerText: "Monthly Tasks")) {
+                    ForEach(monthlyTasks, id: \.self, content: {
+                        taskName in NavigationLink(taskName, destination: DetailsView(taskName: taskName))
                     })
                 }
             }.listStyle(GroupedListStyle())
-            .navigationTitle("Home")
+                .navigationTitle("Home")
         }
     }
 }
@@ -56,27 +56,16 @@ struct ContentView: View {
 struct TaskSectionHeader: View {
     var symbolSystemName: String
     var headerText: String
-    
+
     var body: some View {
-        HStack{
+        HStack {
             Image(systemName: symbolSystemName)
             Text(headerText)
         }.font(.title3)
     }
 }
 
-struct DetailView: View {
-    let taskName: String;
-    
-    var body: some View {
-        VStack {
-            Text(taskName)
-            Text("Placeholder for task description")
-            Text("Placeholder for mark complete button")
-        }
-        .navigationTitle("Test Title")
-    }
-}
+
 
 
 struct ContentView_Previews: PreviewProvider {
