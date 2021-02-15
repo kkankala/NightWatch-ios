@@ -57,7 +57,11 @@ struct ContentView: View {
 
                         // If I get a task out of that Binding<[Task]>(task array), will that element be a binding to a task(Binding<Task>)?
                         let theTasksBinding = tasksBinding[taskIndex]
-                        NavigationLink(destination: DetailsView(task: theTasksBinding), label: { TaskRowView(task: task) })
+                        // Always show with Focus Mode is OFF
+                        // Also show when Focus Mode is ON -- AND -- the task is INcomplete
+                        if focusModeOn == false || (focusModeOn && task.isComplete == false) {
+                            NavigationLink(destination: DetailsView(task: theTasksBinding), label: { TaskRowView(task: task) })
+                        }
                     }).onDelete(perform: { indexSet in
                         nightWatchTasks.weeklyTasks.remove(atOffsets: indexSet)
                     }).onMove(perform: { indices, newOffset in
@@ -78,7 +82,11 @@ struct ContentView: View {
 
                         // If I get a task out of that Binding<[Task]>(task array), will that element be a binding to a task(Binding<Task>)?
                         let theTasksBinding = tasksBinding[taskIndex]
-                        NavigationLink(destination: DetailsView(task: theTasksBinding), label: { TaskRowView(task: task) })
+                        // Always show with Focus Mode is OFF
+                        // Also show when Focus Mode is ON -- AND -- the task is INcomplete
+                        if focusModeOn == false || (focusModeOn && task.isComplete == false) {
+                            NavigationLink(destination: DetailsView(task: theTasksBinding), label: { TaskRowView(task: task) })
+                        }
                     }).onDelete(perform: { indexSet in
                         nightWatchTasks.monthlyTasks.remove(atOffsets: indexSet)
                     }).onMove(perform: { indices, newOffset in
