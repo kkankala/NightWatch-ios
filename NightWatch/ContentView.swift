@@ -8,24 +8,24 @@
 import SwiftUI
 
 let nightlyTasks = [
-    Task(name: "Check all windows", isComplete: false, lastCompleted: nil),
-    Task(name: "Check all doors", isComplete: false, lastCompleted: nil),
-    Task(name: "Check that the safe is locked", isComplete: false, lastCompleted: nil),
-    Task(name: "Check the mailbox", isComplete: false, lastCompleted: nil),
-    Task(name: "Inspect security camera", isComplete: false, lastCompleted: nil),
-    Task(name: "Clear ice from sidewalk", isComplete: false, lastCompleted: nil),
-    Task(name: "Document \"strange and unusual\" occurances", isComplete: false, lastCompleted: nil)
+    "Check all windows",
+    "Check all doors",
+    "Check that the safe is locked",
+    "Check the mailbox",
+    "Inspect security camera",
+    "Clear ice from sidewalk",
+    "Document \"strange and unusual\" occurances"
 ]
 
 let weeklyTasks = [
-    Task(name: "Check inside all vacant rooms", isComplete: false, lastCompleted: nil),
-    Task(name: "Walk the perimeter of the property", isComplete: false, lastCompleted: nil)
+    "Check inside all vacant rooms",
+    "Walk the perimeter of the property"
 ]
 
 let monthlyTasks = [
-    Task(name: "Test security alarm", isComplete: false, lastCompleted: nil),
-    Task(name: "Test motion detectors", isComplete: false, lastCompleted: nil),
-    Task(name: "Test smoke alarms", isComplete: false, lastCompleted: nil)
+    "Test security alarm",
+    "Test motion detectors",
+    "Test smoke alarms"
 ]
 
 struct ContentView: View {
@@ -33,18 +33,18 @@ struct ContentView: View {
         NavigationView {
             List {
                 Section(header: TaskSectionHeader(symbolSystemName: "moon.stars", headerText: "Nightly Tasks")) {
-                    ForEach(nightlyTasks, content: {
-                        task in NavigationLink(task.name, destination: DetailsView(task: task))
+                    ForEach(nightlyTasks, id: \.self, content: {
+                        taskName in NavigationLink(taskName, destination: DetailsView(taskName: taskName))
                     })
                 }
                 Section(header: TaskSectionHeader(symbolSystemName: "sunset", headerText: "Weekly Tasks")) {
-                    ForEach(weeklyTasks, content: {
-                        task in NavigationLink(task.name, destination: DetailsView(task: task))
+                    ForEach(weeklyTasks, id: \.self, content: {
+                        taskName in NavigationLink(taskName, destination: DetailsView(taskName: taskName))
                     })
                 }
                 Section(header: TaskSectionHeader(symbolSystemName: "calendar", headerText: "Monthly Tasks")) {
-                    ForEach(monthlyTasks, content: {
-                        task in NavigationLink(task.name, destination: DetailsView(task: task))
+                    ForEach(monthlyTasks, id: \.self, content: {
+                        taskName in NavigationLink(taskName, destination: DetailsView(taskName: taskName))
                     })
                 }
             }.listStyle(GroupedListStyle())
@@ -64,6 +64,9 @@ struct TaskSectionHeader: View {
         }.font(.title3)
     }
 }
+
+
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
