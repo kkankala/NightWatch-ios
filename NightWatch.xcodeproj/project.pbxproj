@@ -12,6 +12,9 @@
 		7B6BD87625C3B2C0009ADD2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B6BD87525C3B2C0009ADD2B /* Assets.xcassets */; };
 		7B6BD87925C3B2C0009ADD2B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B6BD87825C3B2C0009ADD2B /* Preview Assets.xcassets */; };
 		7BA11A4825DA0ABE002EAED2 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA11A4725DA0ABE002EAED2 /* DetailsView.swift */; };
+		7BA11A4E25DA0D63002EAED2 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA11A4D25DA0D63002EAED2 /* Task.swift */; };
+		7BA11A5325DA169B002EAED2 /* TaskRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA11A5225DA169B002EAED2 /* TaskRowView.swift */; };
+		7BA11A5625DA1D1A002EAED2 /* NightWatchTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA11A5525DA1D1A002EAED2 /* NightWatchTasks.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		7B6BD87825C3B2C0009ADD2B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7B6BD87A25C3B2C1009ADD2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7BA11A4725DA0ABE002EAED2 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
+		7BA11A4D25DA0D63002EAED2 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		7BA11A5225DA169B002EAED2 /* TaskRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRowView.swift; sourceTree = "<group>"; };
+		7BA11A5525DA1D1A002EAED2 /* NightWatchTasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NightWatchTasks.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +66,9 @@
 				7B6BD87A25C3B2C1009ADD2B /* Info.plist */,
 				7B6BD87125C3B2BE009ADD2B /* NightWatchApp.swift */,
 				7B6BD87725C3B2C0009ADD2B /* Preview Content */,
+				7BA11A4D25DA0D63002EAED2 /* Task.swift */,
+				7BA11A5225DA169B002EAED2 /* TaskRowView.swift */,
+				7BA11A5525DA1D1A002EAED2 /* NightWatchTasks.swift */,
 			);
 			path = NightWatch;
 			sourceTree = "<group>";
@@ -141,9 +150,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BA11A5325DA169B002EAED2 /* TaskRowView.swift in Sources */,
+				7BA11A4E25DA0D63002EAED2 /* Task.swift in Sources */,
 				7B6BD87425C3B2BE009ADD2B /* ContentView.swift in Sources */,
 				7B6BD87225C3B2BE009ADD2B /* NightWatchApp.swift in Sources */,
 				7BA11A4825DA0ABE002EAED2 /* DetailsView.swift in Sources */,
+				7BA11A5625DA1D1A002EAED2 /* NightWatchTasks.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
